@@ -4,7 +4,7 @@
 <input type="button" id="seat3" class="<?= $seat3 ?>"/>
 </div>
 <?php
-echo form_open('customerinfo_controller');
+echo form_open('seats_controller/selectseats');
 
 
 $data = array(
@@ -18,7 +18,7 @@ echo form_input($data);
 
 echo "<br />";
 
-if (isset($seatChose)) {
+if (isset($seatChose) && $seatChose = true) {
 	echo "Please select a seat.";
 }
 

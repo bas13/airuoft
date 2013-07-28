@@ -62,11 +62,11 @@ class Seats_controller extends CI_Controller {
         echo "hello1";
 		if ($this->form_validation->run('seatValidation') == FALSE) {
 			echo "hello2";
-			echo "seatval" + $this->form_validation->run('seatValidation');
 			if (isset($_SESSION['flight_id'])) {
 				echo "hello3";
 				$flight_id = $_SESSION['flight_id'];
 				$seats = $this->getSeats($flight_id);
+				
 				$data['seat1'] = "white";
 				$data['seat2'] = "white";
 				$data['seat3'] = "white";
