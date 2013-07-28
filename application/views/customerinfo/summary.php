@@ -1,8 +1,8 @@
 <h3>Purchase Summary</h3> 
 <?php
-    echo "seat " . $_POST['seatnumber'];
-    echo "seatNumber " . $this->input->post('seatnumber');
-    echo "flight " . $_SESSION['flight_id'];
+    //echo "seat " . $_POST['seatnumber'];
+    //echo "seatNumber " . $this->input->post('seatnumber');
+    //echo "flight " . $_SESSION['flight_id'];
 	if (isset($errno) || isset($dberror)) {
 	    echo "<p>DB ERROR</p>";
 

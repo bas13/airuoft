@@ -82,11 +82,16 @@ class Seats_controller extends CI_Controller {
 				}
 				echo "hello4";
 			}
+			
             $data['seatChose'] = true;
 			$data['main'] = 'seats/seats_view';
 			
 		} else {
 			echo "hello5";
+			if (isset($_POST['seatnumber'])) {
+				$_SESSION['seat'] = $this->input->post('seatnumber');
+				unset($_POST['seatnumber']);
+			}
 			$data['main'] = 'customerinfo/customerinfo_view';
 		}
 		echo "hello6>";

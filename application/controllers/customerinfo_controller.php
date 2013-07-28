@@ -20,11 +20,6 @@ class Customerinfo_controller extends CI_Controller {
 		
 		$this->load->library('form_validation');
 
-		if (isset($_POST['seatnumber'])) {
-			$_SESSION['seat'] = $this->input->post('seatnumber');
-			unset($_POST['seatnumber']);
-		}
-
 		$data['main'] = 'customerinfo/customerinfo_view';
 
 		$this->load->view('main/template', $data);
@@ -39,6 +34,8 @@ class Customerinfo_controller extends CI_Controller {
 			$data['main'] = 'customerinfo/customerinfo_view';
 		} else {
 			echo "bam";
+			echo "fid: " . $_SESSION['flight_id'];
+			echo "seat" . $_SESSION['seat'];
 			if (isset($_SESSION['flight_id']) && isset($_SESSION['seat'])) {
 			 	echo "bam3";
 				$flight_id = $_SESSION['flight_id'];
@@ -129,13 +126,13 @@ class Customerinfo_controller extends CI_Controller {
 	}
 	
 	public function getInfo($fid) {
-		$this->seats_model('flight_model');
+		$this->load->model('flight_model');
 		
-		$inforesult = getInfo($fid);
+		$inforesult = $this->flight_model->getInfoDB($fid);
 		
 		$infoarray = array();
 		
-		if ($info->num_rows() > 0) {
+		if ($inforesult->num_rows() > 0) {
 			foreach ($inforesult->result() as $info) { 
 				$infoarray[] = $info->c1.name;
 				$infoarray[] = $info->c2.name;

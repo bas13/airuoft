@@ -46,7 +46,6 @@ class Flight_model extends CI_Model {
                 f.available > 0");
 
         if ($seats_available->num_rows() > 0) {
-            $num_tickets = $this->db->query("select t.id from ticket t where $flight_id = t.flight_id");
             
 
                 //Begin transaction
@@ -79,7 +78,7 @@ class Flight_model extends CI_Model {
     	return $query->result();
     }
     
-    public function getInfo($fid) {
+    public function getInfoDB($fid) {
     	$query = $this->db->query("SELECT c1.name, c2.name, f.date, t.time, tick.first, tick.last, tick.creditcardnumber, tick.creditcardexpiration, tick.seat 
     			FROM flight AS f, timetable AS t, ticket as tick, campus as c1, campus as c2 
     			WHERE t.leavingfrom=c1.id AND t.goingto=c2.id AND f.id=tick.flight_id AND t.id=f.timetable_id;");
