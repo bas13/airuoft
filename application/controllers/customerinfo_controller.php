@@ -51,11 +51,11 @@ class Customerinfo_controller extends CI_Controller {
 				echo "Bam4";
 				// Add ticket to database
 				if ($this->addTicket($flight_id, $seat, $data['firstname'], $data['lastname'], $data['creditcard'], substr($data['expirationdate'], 0, 2) . substr($data['expirationdate'], 3, 5))  == false) {
-					echo "bam4a";
 					$data['dberror'] = true;
+					echo "db error: " . $data['dberror'];
 				}
 				echo "bam5";
-				$resultarray = $this->getInfo($flight_id);
+				$resultarray = $this->getInfo($flight_id, $seat);
 				echo "bam6";
 				// Set up summary page;
 				$data['from'] = $resultarray[0];
@@ -121,29 +121,29 @@ class Customerinfo_controller extends CI_Controller {
 	public function addTicket($flight_id, $seat, $first, $last, $credit_card, $expiry) {
 		$this->load->model('flight_model');
 		echo "baminticket"; 
-		$this->flight_model->insert_ticket(intval($flight_id), intval($seat), strval($first), strval($last), strval($credit_card), strval($expiry));
+		return $this->flight_model->insert_ticket(intval($flight_id), intval($seat), strval($first), strval($last), strval($credit_card), strval($expiry));
 		echo "baminticketafter";
 	}
 	
-	public function getInfo($fid) {
+	public function getInfo($fid, $seat) {
 		$this->load->model('flight_model');
 		
-		$inforesult = $this->flight_model->getInfoDB($fid);
+		$inforesult = $this->flight_model->getInfoDB($fid, $seat);
 		
 		$infoarray = array();
 		
 		if ($inforesult->num_rows() > 0) {
-			foreach ($inforesult->result() as $info) { 
-				$infoarray[] = $info->c1.name;
-				$infoarray[] = $info->c2.name;
-				$infoarray[] = $info->f.date;
-				$infoarray[] = $info->t.time;
-				$infoarray[] = $info->tick.first;
-				$infoarray[] = $info->tick.last;
-				$infoarray[] = $info->tick.creditcardnumber;
-				$infoarray[] = $info->tick.creditcardexpiration;
-				$infoarray[] = $info->tick.seat; 
-			}
+			$row = $inforesult->row();
+				$infoarray[] = $row->depart;
+				$infoarray[] = $row->arrive;
+				$infoarray[] = $row->date;
+				$infoarray[] = $row->time;
+				$infoarray[] = $row->first;
+				$infoarray[] = $row->last;
+				$infoarray[] = $row->creditcardnumber;
+				$infoarray[] = $row->creditcardexpiration;
+				$infoarray[] = $row->seat; 
+		
 		}
 		else {
 		   return false;	

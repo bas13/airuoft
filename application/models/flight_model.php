@@ -78,10 +78,8 @@ class Flight_model extends CI_Model {
     	return $query->result();
     }
     
-    public function getInfoDB($fid) {
-    	$query = $this->db->query("SELECT c1.name, c2.name, f.date, t.time, tick.first, tick.last, tick.creditcardnumber, tick.creditcardexpiration, tick.seat 
-    			FROM flight AS f, timetable AS t, ticket as tick, campus as c1, campus as c2 
-    			WHERE t.leavingfrom=c1.id AND t.goingto=c2.id AND f.id=tick.flight_id AND t.id=f.timetable_id;");
+    public function getInfoDB($fid, $seat) {
+    	$query = $this->db->query("SELECT c1.name as depart, c2.name as arrive, f.date as date, t.time as time, tick.first as first, tick.last as last, tick.creditcardnumber as creditcardnumber, tick.creditcardexpiration as creditcardexpiration, tick.seat as seat FROM flight AS f, timetable AS t, ticket as tick, campus as c1, campus as c2 WHERE t.leavingfrom = c1.id AND t.goingto = c2.id AND f.id = tick.flight_id AND t.id = f.timetable_id and f.id = $fid and tick.seat = $seat;");
     	
     	return $query;
     }

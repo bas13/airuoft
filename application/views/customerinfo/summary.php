@@ -3,7 +3,7 @@
     //echo "seat " . $_POST['seatnumber'];
     //echo "seatNumber " . $this->input->post('seatnumber');
     //echo "flight " . $_SESSION['flight_id'];
-	if (isset($errno) || isset($dberror)) {
+	if (isset($errno) || (isset($dberror) && $dberror == true)) {
 	    echo "<p>DB ERROR</p>";
 
 	    if(isset($errno)) {
