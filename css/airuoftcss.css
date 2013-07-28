@@ -1,0 +1,55 @@
+/* 
+    Document   : airuoftcss
+    Created on : Jul 22, 2013, 12:17:35 AM
+    Author     : markp
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#header {
+    display: block;
+    width: 100%;
+    background-color: navy;
+    font-family: Times New Roman;
+}
+
+#headertitle { 
+    display: block;
+    text-align: left;
+    color: white;
+    padding-left: 3px;
+}
+
+#planeseat {
+	display: block;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 100px;
+	padding-bottom: 5px;
+	border: solid 3px black;
+	width: 70px;
+	height: 70px;
+	border-radius: 100px;
+}
+
+input.green {
+    background-color: green;
+    height: 20px;
+    width: 20px;
+    border: solid 1px grey;
+}
+
+input.white {
+    background-color: white;
+    height: 20px;
+    width: 20px;
+    border: solid 1px grey;
+}
+
+input.yellow {
+    background-color: yellow;
+    height: 20px;
+    width: 20px;
+    border: solid 1px grey;
+}
+
