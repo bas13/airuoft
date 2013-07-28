@@ -15,6 +15,8 @@ class Admin_controller extends CI_Controller {
     }
 
     function index() {
+    	echo base_url();
+    	echo current_url();
         $data['main'] = 'admin/adminlinks';
         $this->load->view('admin/admin_view', $data);
     }

@@ -34,8 +34,6 @@ class Customerinfo_controller extends CI_Controller {
 			$data['main'] = 'customerinfo/customerinfo_view';
 		} else {
 			echo "bam";
-			echo "fid: " . $_SESSION['flight_id'];
-			echo "seat" . $_SESSION['seat'];
 			if (isset($_SESSION['flight_id']) && isset($_SESSION['seat'])) {
 			 	echo "bam3";
 				$flight_id = $_SESSION['flight_id'];
