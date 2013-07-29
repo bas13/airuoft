@@ -1,12 +1,13 @@
-<div id="planeseat" >
-<input type="button" id="seat1" class="<?= $seat1 ?>"/>
-<input type="button" id="seat2" class="<?= $seat2 ?>"/>
-<input type="button" id="seat3" class="<?= $seat3 ?>"/>
+<div id="planeseat">
+	<input type="button" id="seat1" class="<?= $seat1 ?>" /> <input
+		type="button" id="seat2" class="<?= $seat2 ?>" /> <input type="button"
+		id="seat3" class="<?= $seat3 ?>" />
 </div>
 <?php
+// Form to capture which seat user selects
 echo form_open('seats_controller/selectseats');
 
-
+// Hidden form to capture which seat is chosen
 $data = array(
 		'id'          => 'seatnumber',
 		'name'        => 'seatnumber',

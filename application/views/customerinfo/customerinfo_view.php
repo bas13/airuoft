@@ -1,6 +1,7 @@
 <h3>Payment</h3> 
 <h4>All fields are required</h4>
 <?php
+    // Customer info form validation
     echo form_open('customerinfo_controller/register');
 
     echo form_label('First name');

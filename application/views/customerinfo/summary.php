@@ -1,8 +1,6 @@
 <h3>Purchase Summary</h3> 
 <?php
-    //echo "seat " . $_POST['seatnumber'];
-    //echo "seatNumber " . $this->input->post('seatnumber');
-    //echo "flight " . $_SESSION['flight_id'];
+    // If error encountered print error
 	if (isset($errno) || (isset($dberror) && $dberror == true)) {
 	    echo "<p>DB ERROR</p>";
 
@@ -11,6 +9,7 @@
 	    }
 		
 	} else {
+		// Display summary of customer purchase
 		if (isset($from) && isset($to) && isset($date) && isset($time) &&
 	            isset($firstname) &&
 				isset($lastname) &&

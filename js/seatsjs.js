@@ -1,3 +1,9 @@
+// The following jquery functions are binded to the seat
+// displays and set their accordingly:
+// - currently selected seat = green
+// - unoccupied seat = white
+// - occupied seat = yellow
+
 $('#seat1').bind({
 	click: function() {
 		var seat1color = $('#seat1').attr('class');

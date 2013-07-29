@@ -1,5 +1,5 @@
 <div id="mainpage">
-	<h1>Welcome to AirUofT</h1>
+	<h4>Welcome to AirUofT</h4>
 	<br/>
 	<h4>Please fill out the info. below: </h4>
 	<?php echo form_open('flights_controller');?>

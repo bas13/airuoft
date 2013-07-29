@@ -1,12 +1,9 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
+// Set back link
 echo anchor('','Back') . "<br />";
 
+// Check if flights table is set, if so generate table and set it otherwise don't
 if(isset($flights) && $flights != null) {
     echo $flights->generate(); 
 }

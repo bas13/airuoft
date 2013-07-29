@@ -11,16 +11,10 @@
             <h2 id="headertitle">AirUofT</h2>
         </header>
 
-        <!-- <div id="nav">
-            <?php //$this->load->view('navigation'); ?>
-        </div> -->
-
         <div id="main">
             <?php $this->load->view($main); ?>
         </div>
-
     </body>
-    
     <script src="http://code.jquery.com/jquery-1.10.1.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/customerinfojs.js" ></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/seatsjs.js" ></script>

@@ -1,35 +1,33 @@
 <?php
+
+/**
+ * Index controller for main/first page
+ */
 class Index extends CI_Controller {
-	
+
+	/**
+	 * Inherit construct from CI_Controller
+	 */
 	function __construct() {
 		parent::__construct();
+		// Load libraries
 		$this->load->library('session');
+		// Start session
 		session_start();
 	}
-	
-	//Index function.
+
+	/**
+	 * Index/main function for Index controller
+	 */
 	function index() {
+		// Load libraries and helpers
 		$this->load->helper(array('form','url'));
-		
 		$this->load->library('form_validation');
-		
+
+		// Set main body of template to main view
 		$data['main'] = 'main/main_view';
+		// Load template as a view
 		$this->load->view('main/template', $data);
 	}
-	
-	//May need a date validation mechanism.
-	public function validDate($month,$year) {
-		date_default_timezone_set('America/Toronto');
-		if(intval($year) > intval(date('y'))) {
-			return true;
-		} else if (intval($year) == intval(date('y')) 
-                && intval($month) >= intval(date('m'))) {
-            return true;
-        } else {
-            return false;
-        }
-	}
-	
 }
-
 ?>

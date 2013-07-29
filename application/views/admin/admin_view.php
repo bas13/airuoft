@@ -10,10 +10,6 @@
             <h2 id="headertitle">AirUofT</h2>
         </header>
 
-        <!-- <div id="nav">
-            <?php //$this->load->view('navigation'); ?>
-        </div> -->
-
         <div id="main">
             <?php $this->load->view($main); ?>
         </div>

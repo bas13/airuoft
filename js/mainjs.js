@@ -1,9 +1,14 @@
+/**
+ * Creates the dates dynamically starting from tomorrow until
+ * 14 days from tomorrow for the main page
+ */
 function create_dates() {
 	var d = new Date();
 	var preSelect = document.getElementById("0");
 	d.setDate(d.getDate() + 1);
 	preSelect.innerHTML = d.toDateString();
-	//Dynamically creates dates for the next 2 weeks and makes them into elements.
+	// Dynamically creates dates for the next 2 weeks and makes them into
+	// elements.
 	for (i = 0; i < 13; i++) {
 		d.setDate(d.getDate() + 1);
 		var opt = document.createElement("option");

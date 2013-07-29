@@ -1,73 +1,94 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Admin controller class
  */
-
 class Admin_controller extends CI_Controller {
 
-    function __construct() {
-        // Call the Controller constructor
-        parent::__construct();
-        $this->load->library('session');
-        session_start();
-    }
+	/**
+	 * Inherit contruct of CI_Controller
+	 */
+	function __construct() {
+		parent::__construct();
+		$this->load->library('session');
+		// Start the session
+		session_start();
+	}
 
-    function index() {
-    	echo base_url();
-    	echo current_url();
-        $data['main'] = 'admin/adminlinks';
-        $this->load->view('admin/admin_view', $data);
-    }
+	/**
+	 * Index/main function for controller that loads admin_view page
+	 */
+	function index() {
+		// Set admin links as main body of admin_view
+		$data['main'] = 'admin/adminlinks';
+		$this->load->view('admin/admin_view', $data);
+	}
 
-    function populate() {
-        $this->load->model('flight_model');
-        $this->flight_model->populate();
+	/**
+	 * Populate the flight table with flight infos from the current day till
+	 * 14 days after
+	 */
+	function populate() {
+		// Load flight model
+		$this->load->model('flight_model');
+		// Call db model function to populate flights table
+		$this->flight_model->populate();
 
-        //Then we redirect to the index page again
-        redirect('', 'refresh');
-    }
+		// Redirect to the index page
+		redirect('', 'refresh');
+	}
 
-    function delete() {
-        $this->load->model('flight_model');
-        $this->flight_model->delete();
+	/**
+	 * Delete all records from the flight table
+	 */
+	function delete() {
+		// Load flight model
+		$this->load->model('flight_model');
+		// Call db model function to delete all flights from table
+		$this->flight_model->delete();
 
-        //Then we redirect to the index page again
-        redirect('', 'refresh');
-    }
+		// Redirect to the index page
+		redirect('', 'refresh');
+	}
 
-    function showTickets() {
-        //First we load the library and the model
-        $this->load->library('table');
-        $this->load->model('flight_model');
+	function showTickets() {
+		// Load the library and flight model
+		$this->load->library('table');
+		$this->load->model('flight_model');
 
-        //Then we call our model's get_tickets function
-        $flights = $this->flight_model->get_tickets();
+		// Call db model function to obtain all tickets from db
+		$flights = $this->flight_model->get_tickets();
 
-        //If it returns some results we continue
-        if ($flights->num_rows() > 0) {
-            $this->table->set_heading('Flight Date', 'Seat Number', 'First Name', 
-            'Last Name', 'Credit Card Number', 'Expiration Date');
-            foreach ($flights->result() as $row) {
-                if (strlen(strval($row->creditcardexpiration)) == 3) {
-                    $expiry_date_format = '0' . substr($row->creditcardexpiration, 0, 1) . '/' . substr($row->creditcardexpiration, 1, 3);
-                }
-                else {
-                   $expiry_date_format = substr($row->creditcardexpiration, 0, 2) . '/' . substr($row->creditcardexpiration, 2, 4); 
-                }
-               $this->table->add_row($row->date, $row->seat, $row->first, 
-                    $row->last, $row->creditcardnumber, $expiry_date_format);
-            }
-            $data['flights'] = $this->table;
-        } else {
-            $data['flights'] = null;
-        }
+		// Check if there are tickets in the database
+		if ($flights->num_rows() > 0) {
+			// Set heading for table
+			$this->table->set_heading('Flight Date', 'Seat Number', 'First Name',
+					'Last Name', 'Credit Card Number', 'Expiration Date');
 
-        $data['main'] = 'admin/listTickets';
-        $this->load->view('admin/admin_view', $data);
-    }
+			// Add ticket info to table
+			foreach ($flights->result() as $row) {
+				if (strlen(strval($row->creditcardexpiration)) == 3) {
+					$expiry_date_format = '0' . substr($row->creditcardexpiration, 0, 1) .
+					'/' . substr($row->creditcardexpiration, 1, 3);
+				}
+				else {
+					$expiry_date_format = substr($row->creditcardexpiration, 0, 2) .
+					'/' . substr($row->creditcardexpiration, 2, 4);
+				}
+				$this->table->add_row($row->date, $row->seat, $row->first,
+						$row->last, $row->creditcardnumber, $expiry_date_format);
+			}
 
+			// Set table to be passed into view
+			$data['flights'] = $this->table;
+		} else {
+			$data['flights'] = null;
+		}
+
+		// Set main body of admin view to listTickets
+		$data['main'] = 'admin/listTickets';
+		// Load admin view
+		$this->load->view('admin/admin_view', $data);
+	}
 }
-
 ?>
