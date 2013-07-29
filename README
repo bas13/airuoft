@@ -1,0 +1,15 @@
+The README File
+
+Name: Basem Abdel Hamid Student number:994685630 CDF Account:g0bass
+Name: Mark Pablo Student number: 997454972 CDF Account:g1nsprit
+
+
+This airuoft application starts out in the first user page, which is index.php. This first user page allows the user to pick the campus that
+they are going to and the date to select. After they select the "submit" button, they will go to the flights page. This page will list all 
+the flights going to their selected campus at the selected date. Beside every flight, there is a "Pick Seats" button they can press. This button
+will direct the user to the figure that allows the user to select the flight seat they want. Finally, the user inputs their personal
+information and credit card info. Once they press "Buy ticket", they will be redirected to the summary page that displays all the info. they
+specified for the flight. Lastly, the user can print the page with the print button. 
+
+For the admin page, the administrator can show the tickets that are in the database. The administrator can also delete the flight table which
+also automatically deletes the ticket table. The administrator can also repopulate the flight table.
